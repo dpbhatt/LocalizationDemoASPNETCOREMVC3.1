@@ -1,25 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LocalizationDemo.Models;
+using Microsoft.Extensions.Localization;
 
 namespace LocalizationDemo.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IStringLocalizer<ErrorMessagesSharedRources> _sharedResourceLocalizer;
+        private readonly IStringLocalizer<HomeController> _localizer;
+    
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            IStringLocalizer<ErrorMessagesSharedRources> sharedResourceLocalizer,
+            IStringLocalizer<HomeController> localizer)
         {
             _logger = logger;
+            _sharedResourceLocalizer = sharedResourceLocalizer;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
         {
+            ViewData["Slogan"] = _localizer["Slogan"];
+            ViewData["ErrorMessage"] = _sharedResourceLocalizer["ERR_001"];
+            
             EmployeeViewModel model = new EmployeeViewModel
             {
                 FirstName = "Rivaansh",

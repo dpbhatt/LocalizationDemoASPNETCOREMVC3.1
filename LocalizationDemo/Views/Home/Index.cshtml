@@ -13,6 +13,10 @@
     <a asp-action="Create" class="btn btn-primary">@localizer["CreateNew"]</a>
 </p>
 <div>
+    <p>@ViewData["Slogan"]</p>
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+</div>
+<div>
 
     <dl class="row">
         <dt class="col-sm-2">

@@ -15,7 +15,7 @@ namespace LocalizationDemo
             if (!httpContext.Request.Cookies.ContainsKey("language"))
             {
                 // check if user is authenticated or not. If not set default language
-                var cultureInfoToSet = GetRequestCultureById(1);
+                var cultureInfoToSet = GetRequestCultureById(2);
 
                 CookieOptions cookieOptions = new CookieOptions();
                 cookieOptions.Expires = new DateTimeOffset(DateTime.Now.AddDays(30));
